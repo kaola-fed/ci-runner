@@ -1,9 +1,12 @@
 const Koa = require('koa');
 const views = require('koa-views');
+const server = require('koa-static');
 
 const app = new Koa();
 
 app.use(views('views', { extension: 'ejs' }));
+
+app.use(server('public'));
 
 app.use(async ctx => {
   await ctx.render('index', {});
