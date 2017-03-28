@@ -1,5 +1,6 @@
 const cron = require('node-cron');
 const fetch = require('node-fetch');
+const Docker = require('dockerode');
 const db = require('./utils/db');
 
 const CMDS = [
