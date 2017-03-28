@@ -3,25 +3,29 @@
   <head>
     <title>CI Status</title>
     <meta charset="UTF-8">
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'>
     <link href="index.css" rel="stylesheet">
   </head>
   <body>
     <h1 class="title">CI Status</h1>
     <div class="wrap">
+      <% projects.forEach(function(d) { %>
       <div class="project">
-        <h2 class="name f-eps">branch-branch-branch</h2>
+        <h2 class="name f-eps"><%= d.project %></h2>
+        <% d.tasks.forEach(function(task) { %>
         <div class="task">
           <div class="content">
-            <span class="branch f-eps">feature_12312123123_2078123123123123_2078123123</span>
-            <span class="status"></span>
+            <span class="branch f-eps"><%= task.branch %></span>
+            <span class="status <%= task.isPassed ? 'green' : 'red' %>"></span>
           </div>
           <div class="extra">
-            <span class="time">2017-01-08 23:56:23</span>
-            <a class="sha" href="#">ca67d86</a>
+            <span class="time"><%= moment(task.createAt).format('YYYY-MM-DD HH:mm:ss') %></span>
+            <a class="sha" href="<%= task.url %>" target="_blank"><%= task.sha.substr(0, 8) %></a>
           </div>
         </div>
+        <% }) %>
       </div>
+      <% }) %>
     </div>
   </body>
 </html>

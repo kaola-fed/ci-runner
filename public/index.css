@@ -63,14 +63,20 @@ body {
   display: inline-block;
 }
 
-.content .status {
-  float: right;
+.status {
   display: inline-block;
   width: 8px;
   height: 8px;
   border-radius: 4px;
+  margin: 4px 8px;
+}
+
+.status.green {
   background-color: green;
-  margin-top: 8px;
+}
+
+.status.red {
+  background-color: red;
 }
 
 .extra .time {
