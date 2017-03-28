@@ -4,7 +4,7 @@
   "description": "A simple CI runner",
   "main": "app.js",
   "dependencies": {
-    "chalklog": "^1.1.2",
+    "dockerode": "^2.4.2",
     "ejs": "^2.5.6",
     "koa": "^2.2.0",
     "koa-static": "^3.0.0",

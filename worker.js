@@ -1,6 +1,5 @@
 const cron = require('node-cron');
 const fetch = require('node-fetch');
-const spawn = require('child_process').spawn;
 const db = require('./utils/db');
 
 const CMDS = [
@@ -18,22 +17,30 @@ const {
   WEBHOOK_URL = 'http://localhost:8088/_webhook_',
 } = process.env;
 
+const docker = new Docker();
+const dockerRun = cmds => {
+  return new Promise((resolve, reject) => {
+    docker.run('ci', ['bash', '-c', cmds], process.stdout, (err, data, container) => {
+      container.remove();
+      if (err || data.StatusCode) {
+        return reject();
+      }
+      resolve();
+    });
+  })
+}
+
 const runTask = async task => {
   const { branch, sshUrl, sha } = task;
   const cmds = CMDS.replace('<branch>', branch)
     .replace('<sshUrl>', sshUrl)
     .replace('<sha>', sha);
-
-  const docker = spawn('docker', ['run', '-it', 'ci', '/bin/bash', `"${cmds}"`]);
-  docker.stdout.on('data', data => {
-    console.log(`out: ${data}`);
-  });
-  docker.stderr.on('data', data => {
-    console.log(`err: ${data}`);
-  });
-  docker.on('close', code => {
-    console.log(`code: ${code}`);
-  })
+  try {
+    await dockerRun(cmds);
+    await db.add(task, true);
+  } catch(e) {
+    await db.add(task, false);
+  }
 };
 
 setInterval(async () => {
