@@ -4,10 +4,15 @@
   "description": "A simple CI runner",
   "main": "app.js",
   "dependencies": {
+    "chalklog": "^1.1.2",
     "ejs": "^2.5.6",
     "koa": "^2.2.0",
     "koa-static": "^3.0.0",
-    "koa-views": "^6.0.1"
+    "koa-views": "^6.0.1",
+    "moment": "^2.18.1",
+    "mongoose": "^4.9.2",
+    "node-cron": "^1.1.3",
+    "node-fetch": "^1.6.3"
   },
   "devDependencies": {},
   "scripts": {

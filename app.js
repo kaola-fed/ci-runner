@@ -10,7 +10,7 @@ app.use(views('views', { extension: 'ejs' }));
 app.use(server('public'));
 
 app.use(async ctx => {
-  await ctx.render('index', Object.assign({ moment }, require('./test.json')));
+  await ctx.render('index', Object.assign({ moment }, {}));
 });
 
 
