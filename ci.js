@@ -44,7 +44,7 @@ const runTask = async task => {
   }
 };
 
-setInterval(async () => {
+module.exports = async () => {
   const response = await fetch(WEBHOOK_URL, {
     headers: { 'X-Gitlab-Token': CI_TOKEN }
   });
@@ -52,4 +52,4 @@ setInterval(async () => {
   for (let task of tasks) {
     await runTask(task);
   }
-}, 1 * 1000);
+}

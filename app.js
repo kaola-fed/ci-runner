@@ -2,7 +2,9 @@ const Koa = require('koa');
 const views = require('koa-views');
 const server = require('koa-static');
 const moment = require('moment');
+const cron = require('node-cron');
 const db = require('./utils/db');
+const ci = require('./ci');
 
 const app = new Koa();
 
@@ -15,6 +17,9 @@ app.use(async ctx => {
   await ctx.render('index', Object.assign({ moment }, { projects: projects }));
 });
 
+cron.schedule('* * * * *', () => {
+  ci();
+});
 
 const port = process.env.PORT || '3033';
 app.listen(port);
