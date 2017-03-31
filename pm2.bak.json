@@ -7,7 +7,9 @@
     "exec_mode": "fork",
     "env": {
       "PORT": 10020,
-      "DB_URI": "<DB_URI>"
+      "DB_URI": "<DB_URI>",
+      "CI_TOKEN": "<CI_TOKEN>",
+      "WEBHOOK_URL": "<WEBHOOK_URL>"
     }
   }]
 }
