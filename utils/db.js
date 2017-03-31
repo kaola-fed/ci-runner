@@ -18,6 +18,19 @@ module.exports = {
   },
 
   get: async () => {
-    await CI.find({})
+    return await CI.aggregate([
+      { $group: {
+        _id: "$task.project",
+        tasks: {
+          $push: {
+            branch: "$task.branch",
+            isPassed: "$isPassed",
+            url: "$task.commitUrl",
+            sha: "$task.sha",
+            time: "$task.timestamp",
+          }
+        }
+      } },
+    ])
   },
 }

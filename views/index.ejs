@@ -11,7 +11,7 @@
     <div class="wrap">
       <% projects.forEach(function(d) { %>
       <div class="project">
-        <h2 class="name f-eps"><%= d.project %></h2>
+        <h2 class="name f-eps"><%= d._id %></h2>
         <% d.tasks.forEach(function(task) { %>
         <div class="task">
           <div class="content">
@@ -19,7 +19,7 @@
             <span class="status <%= task.isPassed ? 'green' : 'red' %>"></span>
           </div>
           <div class="extra">
-            <span class="time"><%= moment(task.createAt).format('YYYY-MM-DD HH:mm:ss') %></span>
+            <span class="time"><%= moment(task.time).format('YYYY-MM-DD HH:mm:ss') %></span>
             <a class="sha" href="<%= task.url %>" target="_blank"><%= task.sha.substr(0, 8) %></a>
           </div>
         </div>
