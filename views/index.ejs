@@ -12,18 +12,20 @@
       <% projects.forEach(function(d) { %>
       <div class="project">
         <h2 class="name f-eps"><%= d._id %></h2>
-        <% d.tasks.forEach(function(task) { %>
-        <div class="task">
-          <div class="content">
-            <span class="branch f-eps"><%= task.branch %></span>
-            <span class="status <%= task.isPassed ? 'green' : 'red' %>"></span>
+        <div class="task-list">
+          <% d.tasks.forEach(function(task) { %>
+          <div class="task">
+            <div class="content">
+              <span class="branch f-eps"><%= task.branch %></span>
+              <span class="status <%= task.isPassed ? 'green' : 'red' %>"></span>
+            </div>
+            <div class="extra">
+              <span class="time"><%= moment(task.time).format('YYYY-MM-DD HH:mm:ss') %></span>
+              <a class="sha" href="<%= task.url %>" target="_blank"><%= task.sha.substr(0, 8) %></a>
+            </div>
           </div>
-          <div class="extra">
-            <span class="time"><%= moment(task.time).format('YYYY-MM-DD HH:mm:ss') %></span>
-            <a class="sha" href="<%= task.url %>" target="_blank"><%= task.sha.substr(0, 8) %></a>
-          </div>
+          <% }) %>
         </div>
-        <% }) %>
       </div>
       <% }) %>
     </div>

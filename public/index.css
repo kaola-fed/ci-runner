@@ -59,7 +59,7 @@ body {
 }
 
 .content .branch {
-  width: 250px;
+  width: 240px;
   display: inline-block;
 }
 
@@ -87,4 +87,27 @@ body {
   float: right;
   color: #bbb;
   text-decoration: none;
+}
+
+.task-list {
+  height: 310px;
+  overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar {
+  width: 2px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: #222;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #555;
 }
