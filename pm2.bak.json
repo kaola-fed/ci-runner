@@ -1,0 +1,13 @@
+{
+  "apps": [{
+    "name": "ci",
+    "script": "app.js",
+    "watch": ["app"],
+    "instances": 1,
+    "exec_mode": "fork",
+    "env": {
+      "PORT": 10020,
+      "DB_URI": "<DB_URI>"
+    }
+  }]
+}
