@@ -19,6 +19,7 @@ module.exports = {
 
   get: async () => {
     return await CI.aggregate([
+      { $sort: { "task.timestamp": -1 } },
       { $group: {
         _id: "$task.project",
         tasks: {
